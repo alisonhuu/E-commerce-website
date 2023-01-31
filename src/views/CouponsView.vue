@@ -80,7 +80,6 @@ export default {
       this.isLoading = true
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_API_PATH}/admin/coupons?page=${page}`
       this.axios.get(api).then((res) => {
-        console.log('getCoupons', res)
         this.isLoading = false
         this.coupons = res.data.coupons
         this.pagination = res.data.pagination
@@ -119,7 +118,6 @@ export default {
       }
       this.axios[httpMethod](api, { data: this.tempCoupon }).then((res) => {
         this.isLoading = false
-        console.log('updateCoupon', res)
         this.$refs.couponsModal.hideModal()
         this.getCoupons(this.pagination.current_page)
         this.PushMessageState(res, '更新')
@@ -134,7 +132,6 @@ export default {
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_API_PATH}/admin/coupon/${item.id}`
       this.axios.delete(api).then((res) => {
         this.isLoading = false
-        console.log('delCoupon', res)
         this.$refs.delCouponsModal.hideModal()
         this.getCoupons(this.pagination.current_page)
         this.PushMessageState(res, '刪除')

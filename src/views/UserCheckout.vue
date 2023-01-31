@@ -86,7 +86,6 @@ export default {
     getOrder () {
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_API_PATH}/order/${this.orderId}`
       this.axios.get(api).then((res) => {
-        console.log('getOrder', res)
         this.order = res.data.order
       })
     },
@@ -94,7 +93,6 @@ export default {
       this.isLoading = true
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_API_PATH}/pay/${this.orderId}`
       this.axios.post(api).then((res) => {
-        console.log('checkout', res)
         this.isLoading = false
         this.PushMessageState(res, '付款')
         this.$router.push('/user/home')

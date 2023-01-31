@@ -115,7 +115,6 @@ export default {
     getCartQty () {
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_API_PATH}/cart`
       this.axios.get(api).then((res) => {
-        console.log('getCarts', res)
         this.cartQty = res.data.data.carts.length
       })
     },

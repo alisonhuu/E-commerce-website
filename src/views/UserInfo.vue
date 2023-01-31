@@ -71,7 +71,6 @@ export default {
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_API_PATH}/order`
       const form = this.form
       this.axios.post(api, { data: form }).then((res) => {
-        console.log('createOrder', res)
         this.isLoading = false
         this.PushMessageState(res, '訂單')
         if (res.data.success) {

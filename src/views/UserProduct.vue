@@ -70,7 +70,6 @@ export default {
       this.isLoading = true
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_API_PATH}/product/${this.productId}`
       this.axios.get(api).then((res) => {
-        console.log('getProduct', res)
         this.isLoading = false
         this.product = res.data.product
       })
@@ -82,7 +81,6 @@ export default {
       const cart = { product_id: this.productId, qty: 1 }
       this.axios.post(api, { data: cart })
         .then((res) => {
-          console.log('addToCart', res)
           this.loadingItem = ''
           this.isLoading = false
           this.PushMessageState(res, '加入購物車')

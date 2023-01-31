@@ -34,7 +34,6 @@ export default {
       this.isLoading = true
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_API_PATH}/products/all`
       this.axios.get(api).then((res) => {
-        console.log('getProducts', res)
         this.isLoading = false
         this.products = res.data.products
       })

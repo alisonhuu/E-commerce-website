@@ -134,14 +134,15 @@ export default {
     this.getProducts()
   },
   mounted () {
-    window.addEventListener('scroll', this.debounce(this.imgSlide))
+    if (this.$refs.sliderImg) {
+      window.addEventListener('scroll', this.debounce(this.imgSlide))
+    }
   },
   methods: {
     getProducts () {
       this.isLoading = true
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_API_PATH}/products/all`
       this.axios.get(api).then((res) => {
-        console.log('getProducts', res)
         this.isLoading = false
         this.products = res.data.products
       })
@@ -164,12 +165,10 @@ export default {
       }
     },
     imgSlide () {
-      console.log(this.$refs.sliderImg)
       const slideInAt = window.scrollY + window.innerHeight - 30
       const imageBottom = this.$refs.sliderImg.offsetTop
       const isHalfShown = slideInAt > this.$refs.sliderImg.offsetTop + 30
       const isNotScrolledPast = window.scrollY < imageBottom
-      console.log(imageBottom)
       if (isHalfShown && isNotScrolledPast) {
         this.$refs.sliderImg.classList.add('active')
         this.$refs.sliderArticle.classList.add('active')

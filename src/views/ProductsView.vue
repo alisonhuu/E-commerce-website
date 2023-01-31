@@ -91,7 +91,6 @@ export default {
       this.isLoading = true
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_API_PATH}/admin/products?page=${page}`
       this.axios.get(api).then((res) => {
-        console.log('getProducts', res)
         this.isLoading = false
         this.products = res.data.products
         this.pagination = res.data.pagination
@@ -120,7 +119,6 @@ export default {
       }
       this.axios[httpMethod](api, { data: this.tempProduct }).then((res) => {
         this.isLoading = false
-        console.log(res)
         this.$refs.productModal.hideModal()
         this.getProducts(this.pagination.current_page)
         this.PushMessageState(res, '更新')
@@ -135,7 +133,6 @@ export default {
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_API_PATH}/admin/product/${item.id}`
       this.axios.delete(api).then((res) => {
         this.isLoading = false
-        console.log(res)
         this.$refs.delModal.hideModal()
         this.getProducts(this.pagination.current_page)
         this.PushMessageState(res, '刪除')
@@ -144,7 +141,6 @@ export default {
     getAllProducts () {
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_API_PATH}/admin/products/all`
       this.axios.get(api).then((res) => {
-        console.log('getAllProducts', res)
         this.allProducts = Object.values(res.data.products)
       })
     }
@@ -155,7 +151,6 @@ export default {
       if (!this.searchInput) {
         searchData = this.products
       } else {
-        console.log('a')
         searchData = this.allProducts.filter((item) => item.title.match(this.searchInput))
       }
       return searchData

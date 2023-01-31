@@ -127,7 +127,6 @@ export default {
     getOrders (page = 1) {
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_API_PATH}/admin/orders?page=${page}`
       this.axios.get(api).then((res) => {
-        console.log(res)
         this.orders = res.data.orders
         const totalPages = res.data.pagination.total_pages
         if (res.data.pagination.has_next) {
@@ -152,7 +151,6 @@ export default {
     getCoupons (page = 1) {
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_API_PATH}/admin/coupons?page=${page}`
       this.axios.get(api).then((res) => {
-        console.log('getCoupons', res)
         this.coupons = res.data.coupons
       })
     }

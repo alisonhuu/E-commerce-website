@@ -86,7 +86,6 @@ export default {
       this.isLoading = true
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_API_PATH}/cart`
       this.axios.get(api).then((res) => {
-        console.log('getCarts', res)
         this.isLoading = false
         this.carts = res.data.data.carts
         this.cart = res.data.data
@@ -99,7 +98,6 @@ export default {
       this.isLoading = true
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_API_PATH}/cart/${item.id}`
       this.axios.delete(api).then((res) => {
-        console.log('delCart', res)
         this.isLoading = false
         this.getCarts()
         this.PushMessageState(res, '刪除')
@@ -111,7 +109,6 @@ export default {
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_API_PATH}/cart/${item.id}`
       const cart = { product_id: item.id, qty: item.qty }
       this.axios.put(api, { data: cart }).then((res) => {
-        console.log('UpdateCart', res)
         this.loadingItem = ''
         this.getCarts()
       })
@@ -121,7 +118,6 @@ export default {
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_API_PATH}/coupon`
       const code = { code: this.code }
       this.axios.post(api, { data: code }).then((res) => {
-        console.log('useCoupon', res)
         this.isLoading = false
         this.getCarts()
         this.PushMessageState(res, '套用優惠券')

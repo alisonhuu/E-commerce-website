@@ -83,7 +83,6 @@ export default {
       this.isLoading = true
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_API_PATH}/admin/orders?page=${page}`
       this.axios.get(api).then((res) => {
-        console.log('getOrders', res)
         this.isLoading = false
         this.orders = res.data.orders
         this.pagination = res.data.pagination
@@ -110,12 +109,10 @@ export default {
       this.$refs.delOrdersModal.showModal()
     },
     delOrders (item) {
-      console.log('del', item)
       this.isLoading = true
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_API_PATH}/admin/order/${item.id}`
       this.axios.delete(api).then((res) => {
         this.isLoading = false
-        console.log('delOrders', res)
         this.$refs.delOrdersModal.hideModal()
         this.getOrders(this.pagination.current_page)
         this.PushMessageState(res, '刪除')
@@ -127,7 +124,6 @@ export default {
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_API_PATH}/admin/order/${item.id}`
       this.axios.put(api, { data: this.tempOrder }).then((res) => {
         this.isLoading = false
-        console.log('updateOrders', res)
         this.$refs.ordersModal.hideModal()
         this.getOrders(this.pagination.current_page)
         this.PushMessageState(res, '更新')

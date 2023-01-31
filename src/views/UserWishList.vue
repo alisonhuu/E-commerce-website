@@ -47,7 +47,6 @@ export default {
       const cart = { product_id: item.id, qty: 1 }
       this.axios.post(api, { data: cart })
         .then((res) => {
-          console.log('addToCart', res)
           this.isLoading = false
           this.PushMessageState(res, '加入購物車')
           this.emitter.emit('cart-qty')
