@@ -5,7 +5,7 @@
       aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <router-link to="/user/home" class="navbar-brand">
+      <router-link to="/" class="navbar-brand">
         <img src="../../public/images/logo.png" alt="logo">
       </router-link>
       <form @submit.prevent="searchResult" class="w-25 w-sm-100">

@@ -37,7 +37,7 @@ const routes = [
     component: () => import('../views/UserBoard.vue'),
     children: [
       {
-        path: 'home',
+        path: '/',
         name: 'home',
         component: () => import('../views/UserHome.vue')
       },
