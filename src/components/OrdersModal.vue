@@ -166,7 +166,6 @@ export default {
     getAllProducts () {
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_API_PATH}/admin/products/all`
       this.axios.get(api).then((res) => {
-        console.log('getAllProducts', res)
         this.allProducts = Object.values(res.data.products)
       })
     },
@@ -183,7 +182,7 @@ export default {
         const random = Math.floor(Math.random() * 10000)
         this.tempProductId = `-NMdbK3PnewOrder${random}`
         this.tempOrder.products[this.tempProductId] = this.tempProduct
-        this.tempOrder.total += this.tempProduct.product.price
+        this.tempOrder.total += this.tempProduct.product.price * this.tempProduct.qty
         this.tempProduct = { product: { title: '' }, qty: 1 }
         this.wrongMsg = ''
       } else if (!this.tempProduct.product.title && this.tempProduct.qty) {
@@ -195,10 +194,8 @@ export default {
       }
     },
     delProduct (item) {
-      console.log(this.tempOrder.products[item])
       this.tempOrder.total -= this.tempOrder.products[item].final_total
       delete this.tempOrder.products[item]
-      console.log(item, this.tempOrder.products)
     }
   },
   computed: {

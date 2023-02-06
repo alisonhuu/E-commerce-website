@@ -164,12 +164,10 @@ export default {
       }
     },
     uploadFile (mainImg, uploadedFile) {
-      // console.dir(this.$refs.fileInput2)
       const formData = new FormData()
       formData.append('file-to-upload', uploadedFile)
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_API_PATH}/admin/upload`
       this.axios.post(api, formData).then((res) => {
-        console.log('uploadFile', res.data)
         if (res.data.success && mainImg === true) {
           this.tempProduct.imageUrl = res.data.imageUrl
         } else if (res.data.success && mainImg === false) {
@@ -178,7 +176,6 @@ export default {
           this.wrongMessage = res.data.message.message
         }
       })
-      // console.dir(this.$refs.fileInput2)
       this.$refs.fileInput2.value = ''
     }
   },

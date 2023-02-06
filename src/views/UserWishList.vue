@@ -1,27 +1,37 @@
 <template>
 <LoadingCom :active="isLoading"></LoadingCom>
-<section class="my-4">
-      <h4 class="mb-4" v-if="id.length > 0">我的最愛</h4>
-      <h4 class="mb-4" v-else>目前我的最愛是空的，請選擇商品加入！</h4>
-      <div class="row row-cols-2 row-cols-md-4 gx-3 gy-5">
-        <div class="col" v-for="item in product" :key="item.id">
-          <a href="javascript:;" @click.prevent="getProduct(item.id)">
-            <div :style="{ backgroundImage: `url(${item.imageUrl})`}"
-             style="height: 300px" class="bg-center rounded mb-3">
+<div class="container">
+  <section class="my-4">
+    <div  v-if="id.length > 0">
+      <h4 class="">我的最愛</h4>
+      <h4 class="font-mirza mb-4">Wish List</h4>
+    </div>
+    <p class="mb-4 fs-5" v-else>目前我的最愛是空的，請選擇商品加入。</p>
+    <div class="row row-cols-2 row-cols-md-4 gx-3 gy-5 h-100">
+      <div class="col h-100" v-for="item in product" :key="item.id">
+        <a href="javascript:;" @click.prevent="getProduct(item.id)">
+          <div :style="{ backgroundImage: `url(${item.imageUrl})`}"
+          class="product-img bg-center rounded mb-3 position-relative">
+            <div class="position-absolute bottom-0 end-0 p-1">
+              <button class="btn btn-sm btn-light rounded-4"
+                @click.stop="removeWishList(item.id)">
+                <i class="bi bi-trash3"></i>
+              </button>
+              <button class="btn btn-sm btn-light rounded-4 ms-1"
+                @click.stop="addToCart(item)">
+                <i class="bi bi-cart"></i>
+              </button>
             </div>
-          </a>
-          <a href="javascript:;" @click.prevent="getProduct(item.id)"
-          class="h5 link-dark text-decoration-none">{{ item.title }}</a>
-          <p class="card-text fw-bold text-secondary mt-2">{{ $filters.currency(item.price) }}</p>
-          <div class="text-end mb-4">
-            <button class="btn btn-success btn-sm link-light" @click.prevent="removeWishList(item.id)">
-              移除</button>
-            <button class="btn btn-primary btn-sm link-light ms-3" @click.prevent="addToCart(item)">
-              <i class="bi bi-cart me-1"></i>加入購物車</button>
           </div>
-        </div>
+        </a>
+        <a href="javascript:;" @click.prevent="getProduct(item.id)"
+        class="h6 link-dark-h">{{ item.title }}</a>
+        <p class="card-text fw-bold text-secondary mt-2 mb-0">{{ $filters.currency(item.price) }}</p>
       </div>
-    </section>
+    </div>
+  </section>
+
+</div>
 </template>
 
 <script>
@@ -53,9 +63,11 @@ export default {
         })
     },
     removeWishList (item) {
+      this.isLoading = true
       localStorage.removeItem(item)
       this.getId()
       this.emitter.emit('wished-qty')
+      this.isLoading = false
     },
     getId () {
       this.id = []

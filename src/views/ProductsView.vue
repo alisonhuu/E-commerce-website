@@ -1,7 +1,7 @@
 <template>
   <LoadingCom :active="isLoading"></LoadingCom>
-  <div class="d-flex justify-content-between">
-    <h3>商品</h3>
+  <div class="d-flex justify-content-between align-items-center">
+    <h5>商品</h5>
     <div class="d-flex">
       <form class="me-3">
         <div class="input-group">
@@ -16,14 +16,14 @@
     </div>
    </div>
    <div class="bg-light border rounded mt-3 shadow">
-    <table class="table mt-4">
+    <table class="table mt-4 align-middle">
       <thead>
         <tr>
-          <th width="100">圖片</th>
-          <th width="150">商品名稱</th>
-          <th width="100">原價</th>
+          <th width="100" class="text-nowrap">圖片</th>
+          <th width="150" class="text-nowrap">商品名稱</th>
+          <th width="100" class="d-none d-md-table-cell">原價</th>
           <th width="100">售價</th>
-          <th width="120">是否啟用</th>
+          <th width="120" class="text-nowrap">是否啟用</th>
           <th width="150">編輯</th>
         </tr>
       </thead>
@@ -34,10 +34,10 @@
             style="height: 50px" class="bg-center"></div>
           </td>
           <td>{{ item.title }}</td>
-          <td>
+          <td class="text-nowrap d-none d-md-table-cell">
             {{ $filters.currency(item.origin_price) }}
           </td>
-          <td>
+          <td class="text-nowrap">
             {{ $filters.currency(item.price) }}
           </td>
           <td>
@@ -47,9 +47,9 @@
              </div>
           </td>
           <td>
-            <div class="btn-group">
-              <button class="btn btn-outline-primary btn-sm" @click.prevent="openModal(false, item)">編輯</button>
-              <button class="btn btn-outline-danger btn-sm" @click.prevent="delModal(item)">刪除</button>
+            <div class="btn-group btn-group-sm">
+              <button class="btn btn-outline-primary p-1 p-md-2" @click.prevent="openModal(false, item)">編輯</button>
+              <button class="btn btn-outline-danger p-1 p-md-2" @click.prevent="delModal(item)">刪除</button>
             </div>
           </td>
         </tr>

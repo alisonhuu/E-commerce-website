@@ -7,6 +7,12 @@ defineRule('required', required)
 defineRule('email', email)
 defineRule('min', min)
 defineRule('numeric', numeric)
+defineRule('confirmed', (value, [target]) => {
+  if (value === target) {
+    return true
+  }
+  return '密碼不符，請再次確認'
+})
 
 configure({
   generateMessage: localize({ zh_TW: zhTW }),

@@ -1,46 +1,55 @@
 <template>
-  <LoadingCom :active="isLoading"></LoadingCom>
-  <nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><router-link to="/user/cart">購物車</router-link></li>
-    <li class="breadcrumb-item active" aria-current="page">{{ product.title }}</li>
-  </ol>
-</nav>
- <div class="card mx-auto" style="max-width: 60rem;">
-  <div class="row g-0">
-    <div class="col-md-7">
-      <img :src="product.imageUrl" class="img-fluid rounded-start" alt="...">
-    </div>
-    <div class="col-md-5">
-      <div class="card-body d-flex flex-column justify-content-between h-100">
+<LoadingCom :active="isLoading"></LoadingCom>
+<div class="container">
+  <nav class="mb-5" aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><router-link to="/">首頁</router-link></li>
+      <li class="breadcrumb-item active" aria-current="page">{{ product.title }}</li>
+    </ol>
+  </nav>
+  <div class=" mx-auto">
+    <div class="row">
+      <div class="col-md-6">
+        <div :style="{ backgroundImage: `url(${product.imageUrl})`}"
+          class="lg-img bg-center rounded">
+        </div>
+      </div>
+      <div class="col-md-6">
         <div>
-          <h4 class="card-title my-4">{{ product.title }}</h4>
+          <h4 class="mb-4 mt-4 mt-md-0">{{ product.title }}</h4>
           <h5 class="d-inline me-2 text-secondary">售價： {{ $filters.currency(product.price) }}</h5>
           <span><small>（原價： {{ $filters.currency(product.origin_price) }}）</small></span>
-          <p class="card-text mt-4">{{ product.description }}</p>
+          <p class="mt-4">{{ product.description }}</p>
           <div class="mt-3" v-if="product.category === 'flowers'">
             <hr>
-            <p>乾燥花是鮮花經由風乾處理而製成，永生花是鮮花浸泡在脫色藥水中，再染色後製成。</p>
-            <p>花材皆採用當季花材，若市場短缺，將更換等價花材使用。</p>
+            <p class="mb-0">乾燥花是鮮花經由風乾處理而製成，永生花是鮮花浸泡在脫色藥水中，再染色後製成。</p>
+            <p class="mb-0">花材採用當季花材，若市場短缺，將更換等價花材。</p>
             <p>適用於生日禮物、畢業典禮、婚禮、情人節等慶祝場合，也可居家佈置。</p>
             <p>配送方式｜宅配 / 自取 </p>
             <p>保存期限｜約為1-2年，良好保存下可達數年</p>
             <p>注意事項｜請置於陰涼乾燥的通風處，勿陽光直射</p>
           </div>
-        </div>
-        <div class="mt-3" v-if="product.category === 'plants'">
+          <div class="mt-3" v-if="product.category === 'plants'">
             <hr>
-            <p>植物有助於室內空氣之淨化，綠色可放鬆緊繃的雙眼，讓環境更美觀。</p>
-            <p>每株植物生長不同，照片僅供參考，實品會有些微誤差。</p>
+            <p class="mb-0">植物有助於室內空氣之淨化，綠色可放鬆緊繃的雙眼，讓環境更美觀。</p>
+            <p class="mb-0">每株植物生長不同，照片僅供參考，實品會有些微誤差。</p>
             <p>適用於生日禮物、開幕送禮、辦公或居家佈置。</p>
             <p>配送方式｜宅配 / 自取 </p>
             <p>注意事項｜室內植物對陽光需求不太高，請避免陽光直射</p>
           </div>
-        <div class="text-end mb-4">
-          <button class="btn btn-outline-danger m-1" @click.prevent="addToWishList" :disabled="loadingItem === productId">
-            <i class="bi me-1" :class="heart"></i>{{ isWished ? '已加入我的最愛':'加入我的最愛' }}</button>
-          <button class="btn btn-primary link-light ms-2 m-1" @click.prevent="addToCart" :disabled="loadingItem === productId">
-            <i class="bi bi-cart me-1"></i>加入購物車</button>
+          <div class="row mt-4">
+            <label for="qty" class="col-8 col-form-label text-end">數量</label>
+            <input type="number" min="1" v-model.number="qty" class="col form-control me-2" id="qty">
+          </div>
+          <div class="text-end mt-3">
+            <button class="btn btn-outline-danger rounded-4 mt-1"
+            @click.prevent="addToWishList" :disabled="loadingItem === productId">
+              <i class="bi" :class="heart()"></i>
+            </button>
+            <button class="btn-shadow btn btn-primary link-light ms-3" @click.prevent="addToCart" :disabled="loadingItem === productId">
+              <i class="bi bi-cart me-1"></i>加入購物車
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -53,17 +62,14 @@ export default {
   data () {
     return {
       product: {},
+      qty: 1,
       isLoading: false,
-      loadingItem: '',
-      isWished: false
+      loadingItem: ''
     }
   },
   props: ['productId'],
   created () {
     this.getProduct()
-    if (localStorage.getItem(this.productId)) {
-      this.isWished = true
-    }
   },
   methods: {
     getProduct () {
@@ -78,7 +84,7 @@ export default {
       this.loadingItem = this.productId
       this.isLoading = true
       const api = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_API_PATH}/cart`
-      const cart = { product_id: this.productId, qty: 1 }
+      const cart = { product_id: this.productId, qty: this.qty }
       this.axios.post(api, { data: cart })
         .then((res) => {
           this.loadingItem = ''
@@ -88,20 +94,17 @@ export default {
         })
     },
     addToWishList () {
-      if (this.isWished) {
+      if (localStorage.getItem(this.productId)) {
         localStorage.removeItem(this.productId)
         this.emitter.emit('wished-qty')
       } else {
         localStorage.setItem(this.productId, JSON.stringify(this.product))
         this.emitter.emit('wished-qty')
       }
-      this.isWished = !this.isWished
-      // localStorage.clear()
-    }
-  },
-  computed: {
+      this.getProduct()
+    },
     heart () {
-      return this.isWished ? 'bi-heart-fill' : 'bi-heart'
+      return localStorage.getItem(this.productId) ? 'bi-heart-fill' : 'bi-heart'
     }
   },
   inject: ['emitter', 'PushMessageState']

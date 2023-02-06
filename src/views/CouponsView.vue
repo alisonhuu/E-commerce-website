@@ -1,53 +1,53 @@
 <template>
   <LoadingCom :active="isLoading"></LoadingCom>
-  <div class="d-flex justify-content-between">
-    <h3>優惠券</h3>
-    <div class="d-flex">
+  <div class="row justify-content-between align-items-center">
+    <h5 class="col-3">優惠券</h5>
+    <div class="col d-flex align-items-center">
       <form class="me-3">
-        <div class="input-group">
+        <div class="input-group ">
           <input class="form-control form-control-sm" type="search" placeholder="請輸入優惠券名稱"
           :value="searchInput" @change="searchInput = $event.target.value" aria-label="Search">
           <button class="btn btn-secondary input-group-text" type="submit"><i class="bi bi-search"></i></button>
         </div>
       </form>
       <div class="text-end">
-        <button class="btn btn-primary text-white" @click.prevent="openModal(true)">新增優惠券</button>
+        <button class="btn btn-primary text-white text-nowrap" @click.prevent="openModal(true)">新增優惠券</button>
       </div>
     </div>
   </div>
   <div class="bg-light border rounded mt-3 shadow">
-    <table class="table mt-4">
-        <thead>
-          <tr>
-            <th>名稱</th>
-            <th>優惠碼</th>
-            <th>打折</th>
-            <th>到期日</th>
-            <th>是否啟用</th>
-            <th>編輯</th>
-          </tr>
-        </thead>
-        <tbody>
-            <tr v-for="item in searchData" :key="item.id">
-                <td>{{item.title}}</td>
-                <td>{{item.code}}</td>
-                <td>{{item.percent}}%</td>
-                <td>{{$filters.date(item.due_date)}}</td>
-                <td>
-                  <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked"
-                    v-model="item.is_enabled" :true-value="1" :false-value="0">
-                    <label class="form-check-label" for="flexSwitchCheckChecked">{{ item.is_enabled ? '啟用' : '未啟用' }}</label>
-                  </div>
-                </td>
-                <td>
-                    <div class="btn-group">
-                        <button class="btn btn-outline-primary btn-sm" @click.prevent="openModal(false, item)">編輯</button>
-                        <button class="btn btn-outline-danger btn-sm" @click.prevent="delModal(item)">刪除</button>
-                    </div>
-                </td>
-            </tr>
-        </tbody>
+    <table class="table mt-4 align-middle">
+      <thead>
+        <tr>
+          <th class="text-nowrap">名稱</th>
+          <th>優惠碼</th>
+          <th>打折</th>
+          <th class="d-none d-md-table-cell">到期日</th>
+          <th class="text-nowrap">是否啟用</th>
+          <th class="text-nowrap">編輯</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="item in searchData" :key="item.id">
+          <td>{{item.title}}</td>
+          <td style="word-break: break-all;">{{item.code}}</td>
+          <td>{{item.percent}}%</td>
+          <td class="d-none d-md-table-cell">{{$filters.date(item.due_date)}}</td>
+          <td>
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked"
+              v-model="item.is_enabled" :true-value="1" :false-value="0">
+              <label class="form-check-label" for="flexSwitchCheckChecked">{{ item.is_enabled ? '啟用' : '未啟用' }}</label>
+            </div>
+          </td>
+          <td>
+              <div class="btn-group btn-group-sm">
+                  <button class="btn btn-outline-primary p-1 p-md-2" @click.prevent="openModal(false, item)">編輯</button>
+                  <button class="btn btn-outline-danger p-1 p-md-2" @click.prevent="delModal(item)">刪除</button>
+              </div>
+          </td>
+        </tr>
+      </tbody>
     </table>
   </div>
   <CouponsModal ref="couponsModal" :coupon="tempCoupon" @update-coupon="updateCoupon"></CouponsModal>

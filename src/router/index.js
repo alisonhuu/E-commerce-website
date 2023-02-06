@@ -49,22 +49,32 @@ const routes = [
           {
             path: 'all',
             name: '全部商品',
+            meta: { name: 'All' },
             component: () => import('../views/UserAll.vue')
           },
           {
             path: 'gift',
             name: '送禮首選',
+            meta: { name: 'Gift' },
             component: () => import('../views/UserGift.vue')
           },
           {
             path: 'plants',
             name: '植栽',
+            meta: { name: 'Plant' },
             component: () => import('../views/UserPlants.vue')
           },
           {
             path: 'flowers',
             name: '乾燥花',
+            meta: { name: 'Flower' },
             component: () => import('../views/UserFlowers.vue')
+          },
+          {
+            path: 'wishList',
+            name: '我的最愛',
+            meta: { name: 'Wish List' },
+            component: () => import('../views/UserWishList.vue')
           }
         ]
       },
@@ -76,22 +86,26 @@ const routes = [
       },
       {
         path: 'about',
-        name: 'about',
+        name: '關於我們',
+        meta: { name: 'About' },
         component: () => import('../views/UserAbout.vue')
       },
       {
         path: 'FAQ',
-        name: 'FAQ',
+        name: '常見問題',
+        meta: { name: 'FAQ' },
         component: () => import('../views/UserFAQ.vue')
       },
       {
-        path: 'wishList',
-        name: 'wishList',
-        component: () => import('../views/UserWishList.vue')
+        path: 'member',
+        name: '加入會員',
+        meta: { name: 'Membership' },
+        component: () => import('../views/UserMembership.vue')
       },
       {
         path: 'cart',
-        name: 'cart',
+        name: '購物車',
+        meta: { name: 'Cart' },
         component: () => import('../views/UserCart.vue')
       },
       {
@@ -112,7 +126,8 @@ const routes = [
       },
       {
         path: 'search',
-        name: 'search',
+        name: '搜尋',
+        meta: { name: 'Search' },
         component: () => import('../views/UserSearch.vue')
       },
       {

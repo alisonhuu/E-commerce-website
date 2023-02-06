@@ -1,79 +1,83 @@
 <template>
   <LoadingCom :active="isLoading"></LoadingCom>
-  <h4 class="mb-5 text-center">請確認以下資料是否正確</h4>
-  <form class="row" @submit.prevent="checkout">
-    <div class="col-sm-8 mx-auto">
-      <span class="bg-primary py-2 px-4 fw-bold rounded-top text-light">購物明細</span>
-      <table class="table border border-3 border-primary mt-1 mb-5">
-      <thead>
-        <tr>
-          <th scope="col" width="150">商品</th>
-          <th scope="col">名稱</th>
-          <th scope="col">數量</th>
-          <th scope="col">小計</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="item in order.products" :key="item.id">
-          <td>
-            <div :style="{ backgroundImage: `url(${item.product.imageUrl})`}"
-            style="height: 100px; background-position: center; background-size: cover;"></div>
-          </td>
-          <td>{{ item.product.title }}</td>
-          <td>{{ item.qty }}</td>
-          <td class="text-end">{{ $filters.currency(item.total) }}</td>
-        </tr>
-      </tbody>
-      <tfoot>
-        <tr>
-          <td colspan="3" class="fw-bold text-end">
-            <p>折扣</p>
-            <p>總金額</p>
-          </td>
-          <td class="fw-bold text-end">
-            <p>- {{ $filters.currency(discount) }}</p>
-            <p>{{ $filters.currency(order.total) }}</p>
-          </td>
-        </tr>
-      </tfoot>
-    </table>
-    <span class="bg-primary py-2 px-4 fw-bold rounded-top text-light">收件人資料</span>
-      <table class="table border border-3 border-primary mt-1">
-      <tbody>
-        <tr>
-          <th scope="col">姓名</th>
-          <td>{{ order.user.name }}</td>
-        </tr>
-        <tr>
-          <th scope="col">電話</th>
-          <td>{{ order.user.tel }}</td>
-        </tr>
-        <tr>
-          <th scope="col">Email</th>
-          <td>{{ order.user.email }}</td>
-        </tr>
-        <tr>
-          <th scope="col">地址</th>
-          <td>{{ order.user.address }}</td>
-        </tr>
-        <tr>
-          <th scope="col">備註</th>
-          <td>{{ order.message }}</td>
-        </tr>
-      </tbody>
-    </table>
-      <div class="text-end">
-      <button type="submit" class="btn btn-primary text-light mt-4">確認結帳</button>
+  <div class="container">
+    <h4 class="text-center">請確認以下資料是否正確</h4>
+    <h4 class="mb-5 font-mirza text-center">Check</h4>
+    <form class="row" @submit="checkout">
+      <div class="col-11 col-md-8 mx-auto">
+        <span class="bg-primary py-2 px-4 fw-bold rounded-top text-light">購物明細</span>
+        <table class="table border border-3 border-primary mt-1 mb-5">
+        <thead>
+          <tr>
+            <th scope="col" class="col-3 col-md-5">商品</th>
+            <th scope="col">名稱</th>
+            <th class="text-nowrap" scope="col">數量</th>
+            <th scope="col">小計</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="item in order.products" :key="item.id">
+            <td>
+              <div :style="{ backgroundImage: `url(${item.product.imageUrl})`}"
+              class="sm-imgs bg-center"></div>
+            </td>
+            <td>{{ item.product.title }}</td>
+            <td>{{ item.qty }}</td>
+            <td class="text-end">{{ $filters.currency(item.total) }}</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="3" class="fw-bold text-end">
+              <p v-if="discount" class="text-success">折扣</p>
+              <p>總金額</p>
+            </td>
+            <td class="fw-bold text-end">
+              <p v-if="discount" class="text-success text-nowrap">- {{ $filters.currency(discount) }}</p>
+              <p class="text-nowrap">{{ $filters.currency(order.total) }}</p>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+      <span class="bg-primary py-2 px-4 fw-bold rounded-top text-light">收件人資料</span>
+        <table class="table border border-3 border-primary mt-1">
+        <tbody>
+          <tr>
+            <th scope="col">姓名</th>
+            <td>{{ order.user.name }}</td>
+          </tr>
+          <tr>
+            <th scope="col">電話</th>
+            <td>{{ order.user.tel }}</td>
+          </tr>
+          <tr>
+            <th scope="col">Email</th>
+            <td>{{ order.user.email }}</td>
+          </tr>
+          <tr>
+            <th scope="col">地址</th>
+            <td>{{ order.user.address }}</td>
+          </tr>
+          <tr>
+            <th scope="col">備註</th>
+            <td>{{ order.message }}</td>
+          </tr>
+        </tbody>
+      </table>
+        <div class="text-end mt-4">
+          <button type="submit" class="btn-shadow btn btn-primary link-light px-4">
+          確認結帳</button>
+        </div>
       </div>
-    </div>
-  </form>
+    </form>
+  </div>
 </template>
 
 <script>
 export default {
   data () {
     return {
-      order: { user: {} },
+      order: { user: {}, products: {} },
       orderId: '',
       isLoading: false
     }
@@ -95,7 +99,7 @@ export default {
       this.axios.post(api).then((res) => {
         this.isLoading = false
         this.PushMessageState(res, '付款')
-        this.$router.push('/user/home')
+        this.$router.push('/')
       })
     }
   },

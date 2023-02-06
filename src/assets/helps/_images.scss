@@ -1,0 +1,59 @@
+@mixin md{
+  @media(min-width: 768px){
+    @content;
+  }
+}
+@mixin lg{
+  @media(min-width: 992px){
+    @content;
+  }
+}
+.bg-center {
+  background-position: center; 
+  background-size: cover;
+}
+.home-img{
+  background-image: url(/public/images/home_course.jpg);
+  height: 240px;
+  &:hover{
+    background-image: linear-gradient(transparent, rgba(0,0,0,0.3)),url(/public/images/home_course.jpg);
+  }
+  @include md{
+    height: 340px;
+  }
+  @include lg{
+    height: 400px;
+  }
+}
+.product-img{
+  height: 200px;
+  transition: all 0.5s;
+  transform: scale(0.95);
+  &:hover{
+    transform: scale(1);
+  }
+  @include md{
+    height: 240px;
+  }
+  @include lg{
+    height: 280px;
+  }
+}
+.sm-imgs{
+  height: 100px;
+  @include md{
+    height: 150px;
+  }
+  @include lg{
+    height: 180px;
+  }
+}
+.lg-img{
+  height: 300px;
+  @include md{
+    height: 430px;
+  }
+  @include lg{
+    height: 500px;
+  }
+}

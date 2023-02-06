@@ -1,35 +1,3 @@
-.bg-center {
-  background-position: center; 
-  background-size: cover;
-}
-
-// remove button outline
-.btn:focus, .btn:active, .btn:active:focus, 
-.btn.active:focus, .btn.foucs, .btn:active.focus, .btn.active.focus {
-  border: 0;
-  outline: none;
-  box-shadow: none;
-}
-.navbar-toggler,
-.navbar-toggler:focus,
-.navbar-toggler:active,
-.navbar-toggler-icon:focus {
-  border: 0;
-  box-shadow: none;
-}
-
-//img slide
-.align-left.slide-in {
-  transform: translateX(-90%) scale(0.95);
-}
-.align-right.slide-in {
-  transform: translateX(90%) scale(0.95);
-}
-.slide-in{
-  opacity: 0;
-  transition: all 1s;
-}
-.slide-in.active {
-  opacity: 1;
-  transform: translateX(0%) scale(1);
+.font-mirza{
+  font-family: 'Mirza', cursive;
 }

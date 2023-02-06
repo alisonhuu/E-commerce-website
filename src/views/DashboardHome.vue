@@ -32,12 +32,12 @@
   </div>
   </section>
   <h5>最新訂單</h5>
-  <div class="bg-light border rounded mt-3 border-bottom-0" >
+  <div class="bg-light border rounded mt-3 border-bottom-0">
      <table class="table">
        <thead>
          <tr>
            <th width="100">訂單編號</th>
-           <th width="100">購買時間</th>
+           <th width="100" class=" d-none d-md-table-cell">購買時間</th>
            <th width="100">購買人</th>
            <th width="220">購買品項</th>
            <th width="120">應付金額</th>
@@ -46,7 +46,7 @@
        <tbody>
          <tr v-for="order in orders.slice(0,5)" :key="order.id">
            <td class="fs-6">{{ (order.id).substring(3,10) }}</td>
-           <td>{{ $filters.date(order.create_at) }}</td>
+           <td class="d-none d-md-table-cell">{{ $filters.date(order.create_at) }}</td>
            <td>{{ order.user.name }}</td>
            <td>
              <small v-for="item in order.products" :key="item.id" class="d-block">

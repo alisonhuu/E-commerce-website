@@ -1,27 +1,18 @@
 <template>
+
   <LoadingCom :active="isLoading"></LoadingCom>
-  <main>
-    <section class="my-4">
-      <div class="row row-cols-2 row-cols-md-4 gx-3 gy-5">
-        <div class="col" v-for="item in plants" :key="item.id">
-          <a href="javascript:;" @click.prevent="getProduct(item.id)">
-            <div :style="{ backgroundImage: `url(${item.imageUrl})`}"
-             style="height: 350px" class="bg-center rounded mb-3">
-            </div>
-          </a>
-          <a class="h5 link-dark text-decoration-none">{{ item.title }}</a>
-          <p class="card-text fw-bold text-secondary mt-2">{{ $filters.currency(item.price) }}</p>
-        </div>
-      </div>
-    </section>
-  </main>
-</template>
+  <ProductCategory :products="plants" @get-products="getProducts()"></ProductCategory>
+
+  </template>
 
 <script>
+import ProductCategory from '@/components/ProductCategory.vue'
+
 export default {
   data () {
     return {
       products: [],
+      plants: [],
       isLoading: false
     }
   },
@@ -35,17 +26,14 @@ export default {
       this.axios.get(api).then((res) => {
         this.isLoading = false
         this.products = res.data.products
+        this.getPlants()
       })
     },
-    getProduct (id) {
-      this.$router.push(`/user/product/${id}`)
-    }
-  },
-  computed: {
-    plants () {
-      return this.products.filter(
+    getPlants () {
+      this.plants = this.products.filter(
         (item) => item.category === 'plants')
     }
-  }
+  },
+  components: { ProductCategory }
 }
 </script>

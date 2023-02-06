@@ -1,73 +1,76 @@
 <template>
   <LoadingCom :active="isLoading"></LoadingCom>
-  <table class="table">
-  <thead>
-    <tr>
-      <th scope="col" width="200">圖片</th>
-      <th scope="col">產品名稱</th>
-      <th scope="col" width="100">數量</th>
-      <th scope="col" width="150">單價</th>
-      <th scope="col"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr v-for="item in carts" :key="item.id">
-      <td>
-        <a href="javascript:;" @click.prevent="getProduct (item.product.id)">
-          <div :style="{ backgroundImage: `url(${item.product.imageUrl})`}"
-          style="height: 150px" class="bg-center"></div>
-        </a>
-      </td>
-      <td>{{ item.product.title }}</td>
-      <td>
-        <div class="input-group input-group-sm">
-          <input type="number" class="form-control" min="1"
-                :disabled="item.id === loadingItem"
-                @change="updateCart(item)"
-                v-model.number="item.qty">
-          <div class="input-group-text">/ {{ item.product.unit }}</div>
+  <div class="container">
+    <BreadcrumbCom></BreadcrumbCom>
+    <div class="row" v-if="carts.length > 0">
+      <div class="bg-light shadow p-3 p-md-4 col-11 col-md-8 mx-auto">
+        <table class="table align-middle">
+          <tbody>
+            <tr v-for="item in carts" :key="item.id">
+              <td class="p-0">
+                <a href="javascript:;" class="btn btn-sm btn-outline-danger rounded-5" @click.prevent="delCart(item)">
+                  <i class="bi bi-trash3"></i>
+                </a>
+              </td>
+              <td class="col-3">
+                <a href="javascript:;" @click.prevent="getProduct (item.product.id)">
+                  <div :style="{ backgroundImage: `url(${item.product.imageUrl})`}"
+                  class="sm-imgs bg-center"></div>
+                </a>
+              </td>
+              <td>
+                <p class="fw-bold">{{ item.product.title }}</p>
+                <div class="input-group input-group-sm" style="width: 100px">
+                  <input type="number" class="form-control" min="1"
+                        :disabled="item.id === loadingItem"
+                        @change="updateCart(item)"
+                        v-model.number="item.qty">
+                  <div class="input-group-text">/ {{ item.product.unit }}</div>
+                </div>
+              </td>
+              <td class="fw-bold mt-2 mb-0 text-end text-nowrap">
+                {{ $filters.currency(item.product.price) }}
+              </td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="3">
+                <p class="text-end">小計</p>
+                <p class="text-end" v-if="cart.final_total !== cart.total">
+                  <span class="bg-success text-light py-1 px-2 rounded">優惠券:
+                  <span class="fw-bold ">{{ carts[0].coupon.title }}</span></span>
+                  <span class="fw-bold ms-2 text-success">折抵</span></p>
+                <p class="fw-bold text-end">總額</p>
+              </td>
+              <td>
+                <p class="text-end text-nowrap">{{ $filters.currency(cart.total) }}</p>
+                <p class="fw-bold text-end text-success text-nowrap" v-if="cart.final_total !== cart.total" >- {{ $filters.currency(cart.total-cart.final_total) }}</p>
+                <p class="fw-bold text-end text-nowrap">{{ $filters.currency(cart.final_total) }}</p>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+        <div class="input-group input-group-sm pb-3 px-2 p-mb-0">
+          <input type="text" class="form-control" placeholder="請輸入優惠碼" v-model.lazy="code" @keyup.enter="useCoupon">
+          <div class="input-group-text">
+            <button class="btn btn-sm btn-outline-secondary" type="button" @click.prevent="useCoupon">
+              套用優惠碼
+            </button>
+          </div>
         </div>
-      </td>
-      <td class="text-end">
-      <p>{{ $filters.currency(item.product.price) }}</p>
-      </td>
-      <td>
-        <a href="javascript:;" class="text-danger h5" @click.prevent="delCart(item)"><i class="bi bi-x-circle"></i></a>
-      </td>
-    </tr>
-  </tbody>
-  <tfoot>
-    <tr>
-      <td colspan="3">
-        <p class="fw-bold text-end">小計</p>
-        <p class="text-end" v-if="cart.final_total !== cart.total">
-          <span class="bg-success text-light p-1 rounded">已套用優惠券:
-          <span class="fw-bold">{{ carts[0].coupon.title }}</span></span>
-          <span class="fw-bold ms-2 text-success">折抵</span></p>
-        <p class="fw-bold text-end">總額</p>
-      </td>
-      <td>
-        <p class="text-end">{{ $filters.currency(cart.total) }}</p>
-        <p class="fw-bold text-end text-success" v-if="cart.final_total !== cart.total" >- {{ $filters.currency(cart.total-cart.final_total) }}</p>
-        <p class="text-end">{{ $filters.currency(cart.final_total) }}</p>
-      </td>
-    </tr>
-  </tfoot>
-</table>
-  <div class="input-group input-group-sm">
-    <input type="text" class="form-control" placeholder="請輸入優惠碼" v-model.lazy="code" @keyup.enter="useCoupon">
-    <div class="input-group-text">
-      <button class="btn btn-outline-secondary" type="button" @click.prevent="useCoupon">
-        套用優惠碼
-      </button>
+        <div class="text-end mt-5">
+          <button class="btn-shadow btn btn-primary text-light" @click.prevent="goCheckout">前往結帳</button>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="text-end">
-    <button class="btn btn-primary text-light mt-4" @click.prevent="goCheckout">前往結帳</button>
+    <p class="mb-4 fs-5" v-else>目前購物車是空的，請選擇商品加入。</p>
   </div>
 </template>
 
 <script>
+import BreadcrumbCom from '@/components/BreadcrumbCom.vue'
+
 export default {
   data () {
     return {
@@ -127,6 +130,7 @@ export default {
       this.$router.push('/user/info')
     }
   },
+  components: { BreadcrumbCom },
   inject: ['emitter', 'PushMessageState']
 }
 </script>

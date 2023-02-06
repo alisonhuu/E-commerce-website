@@ -1,28 +1,18 @@
 <template>
+
   <LoadingCom :active="isLoading"></LoadingCom>
-  <main>
-    <section class="my-4">
-      <div class="row row-cols-2 row-cols-md-4 gx-3 gy-5">
-        <div class="col" v-for="item in gifts" :key="item.id">
-          <a href="javascript:;" @click.prevent="getProduct(item.id)">
-            <div :style="{ backgroundImage: `url(${item.imageUrl})`}"
-             style="height: 350px" class="bg-center rounded mb-3">
-            </div>
-          </a>
-          <a href="javascript:;" @click.prevent="getProduct(item.id)"
-          class="h5 link-dark text-decoration-none">{{ item.title }}</a>
-          <p class="card-text fw-bold text-secondary mt-2">{{ $filters.currency(item.price) }}</p>
-        </div>
-      </div>
-    </section>
-  </main>
-</template>
+  <ProductCategory :products="gifts" @get-products="getProducts()"></ProductCategory>
+
+  </template>
 
 <script>
+import ProductCategory from '@/components/ProductCategory.vue'
+
 export default {
   data () {
     return {
       products: [],
+      gifts: [],
       isLoading: false
     }
   },
@@ -36,17 +26,14 @@ export default {
       this.axios.get(api).then((res) => {
         this.isLoading = false
         this.products = res.data.products
+        this.getGifts()
       })
     },
-    getProduct (id) {
-      this.$router.push(`/user/product/${id}`)
-    }
-  },
-  computed: {
-    gifts () {
-      return this.products.filter(
+    getGifts () {
+      this.gifts = this.products.filter(
         (item) => item.is_gift === true)
     }
-  }
+  },
+  components: { ProductCategory }
 }
 </script>

@@ -73,15 +73,12 @@ export default {
       this.tempCoupon = this.coupon
       // 將時間格式改為 YYYY-MM-DD
       if (this.tempCoupon.due_date) {
-        // console.log('this.tempCoupon.due_date', this.tempCoupon.due_date)
         const dateAndTime = new Date(this.tempCoupon.due_date * 1000)
           .toISOString().split('T');
         [this.due_date] = dateAndTime // 等同 this.due_date = dateAndTime[0]
-        console.log('dateAndTime', dateAndTime)
       }
     },
     due_date () {
-      console.log('this.due_date', this.due_date)
       this.tempCoupon.due_date = Math.floor(new Date(this.due_date) / 1000)
     }
   },

@@ -298,9 +298,9 @@ $cyans: (
 // fusv-enable
 
 // scss-docs-start theme-color-variables
-$primary:       #A398C3; //$blue !default;
+$primary:       #7d80c0;//$blue !default; #A398C3; 8c8eb6 6767a8 7d80c0
 $secondary:     $gray-600 !default;
-$success:       #416A9F; //$green !default;
+$success:       #9caa77; //$green !default;
 $info:          $cyan !default;
 $warning:       $yellow !default;
 $danger:        $red !default;
@@ -1193,15 +1193,15 @@ $pagination-padding-x-lg:           1.5rem !default;
 
 $pagination-font-size:              $font-size-base !default;
 
-$pagination-color:                  var(--#{$prefix}link-color) !default;
+$pagination-color:                  $dark;//var(--#{$prefix}link-color) !default;
 $pagination-bg:                     $white !default;
 $pagination-border-radius:          $border-radius !default;
 $pagination-border-width:           $border-width !default;
 $pagination-margin-start:           ($pagination-border-width * -1) !default;
 $pagination-border-color:           $gray-300 !default;
+$pagination-focus-bg:               $gray-200 !default;
 
 $pagination-focus-color:            var(--#{$prefix}link-hover-color) !default;
-$pagination-focus-bg:               $gray-200 !default;
 $pagination-focus-box-shadow:       $input-btn-focus-box-shadow !default;
 $pagination-focus-outline:          0 !default;
 
@@ -1356,7 +1356,7 @@ $popover-arrow-outer-color:         var(--#{$prefix}border-color-translucent) !d
 // Toasts
 
 // scss-docs-start toast-variables
-$toast-max-width:                   350px !default;
+$toast-max-width:                   250px !default; //350px
 $toast-padding-x:                   .75rem !default;
 $toast-padding-y:                   .5rem !default;
 $toast-font-size:                   .875rem !default;
@@ -1420,7 +1420,7 @@ $modal-footer-bg:                   null !default;
 $modal-footer-border-color:         $modal-header-border-color !default;
 $modal-footer-border-width:         $modal-header-border-width !default;
 
-$modal-sm:                          300px !default;
+$modal-sm:                          180px !default; //300px
 $modal-md:                          650px !default; //500px
 $modal-lg:                          800px !default;
 $modal-xl:                          1140px !default;

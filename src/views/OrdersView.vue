@@ -1,7 +1,7 @@
 <template>
    <LoadingCom :active="isLoading"></LoadingCom>
-   <div class="d-flex justify-content-between">
-    <h3>訂單</h3>
+   <div class="d-flex justify-content-between align-items-center">
+    <h5>訂單</h5>
     <form class="me-3">
       <div class="input-group">
         <input class="form-control form-control-sm" type="search" placeholder="請輸入訂單編號"
@@ -11,26 +11,24 @@
     </form>
    </div>
    <div class="bg-light border rounded mt-3 shadow">
-     <table class="table table-sm mt-3">
+     <table class="table table-sm mt-3 align-middle">
        <thead>
          <tr>
            <th>訂單編號</th>
-           <th>購買時間</th>
+           <th class="d-none d-md-table-cell">購買時間</th>
            <th>購買人</th>
            <th>
             <div>購買品項</div>
            </th>
-           <th>應付金額</th>
-           <th class="text-nowrap">
-            <div class="d-none d-md-block">是否付款</div>
-          </th>
+           <th class="text-nowrap">應付金額</th>
+           <th class="text-nowrap d-none d-md-table-cell">是否付款</th>
            <th>編輯</th>
          </tr>
        </thead>
        <tbody>
          <tr v-for="order in searchData" :key="order.id" class="fs-7">
            <td>{{ (order.id).substring(1,8) }}</td>
-           <td>{{ $filters.date(order.create_at) }}</td>
+           <td class="d-none d-md-table-cell">{{ $filters.date(order.create_at) }}</td>
            <td>{{ order.user.name }}</td>
            <td>
             <div v-for="item in order.products" :key="item.id">
@@ -38,16 +36,16 @@
             </div>
            </td>
            <td>{{ $filters.currency(order.total) }}</td>
-           <td>
-             <div class="form-check form-switch d-none d-md-block">
+           <td class="d-none d-md-table-cell">
+             <div class="form-check form-switch">
                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" v-model="order.is_paid">
                <label class="form-check-label" for="flexSwitchCheckChecked">{{ order.is_paid ? '已付款' : '未付款' }}</label>
              </div>
            </td>
            <td>
-             <div class="btn-group">
-               <button class="btn btn-outline-primary btn-sm" @click.prevent="openModal(order)">編輯</button>
-               <button class="btn btn-outline-danger btn-sm" @click.prevent="delOrdersModal(order)">刪除</button>
+             <div class="btn-group btn-group-sm">
+               <button class="btn btn-outline-primary p-1 p-md-2" @click.prevent="openModal(order)">編輯</button>
+               <button class="btn btn-outline-danger p-1 p-md-2" @click.prevent="delOrdersModal(order)">刪除</button>
              </div>
            </td>
          </tr>
