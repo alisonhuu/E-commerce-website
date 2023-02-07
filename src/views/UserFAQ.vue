@@ -46,7 +46,7 @@
       </div>
       <div class="col-10 mb-4 mt-5">
         <span class="h5">訂購</span>
-        <span class="h5 font-mirza ms-2">Product</span>
+        <span class="h5 font-mirza ms-2">Shop</span>
       </div>
       <div class="accordion col-10" id="accordionExample2">
         <div class="accordion-item">

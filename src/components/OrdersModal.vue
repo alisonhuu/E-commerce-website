@@ -96,9 +96,9 @@
                       </button>
                     </div>
                   </td>
-                  <td v-if="product.product" >{{ product.product.title }}</td>
+                  <td v-if="product.product" class="text-nowrap">{{ product.product.title }}</td>
                   <td>x {{ product.qty }}</td>
-                  <td class="text-end">{{ $filters.currency(product.total) }}</td>
+                  <td class="text-end text-nowrap">{{ $filters.currency(product.total) }}</td>
                 </tr>
             </tbody>
               <tr>

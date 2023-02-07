@@ -6,7 +6,7 @@
     <div class="btn-img"></div>
   </router-link>
 </div>
-<div class="bg-center w-100 my-5" style="height: 250px; backgroundImage: url('/images/about_bg2.jpg')">
+<div class="bg-center w-100 my-5" style="backgroundImage: url('/images/about_bg.jpeg'); height: 250px;">
 </div>
 <div class="container">
   <div class="text-center row my-6">

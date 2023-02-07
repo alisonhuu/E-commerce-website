@@ -35,7 +35,7 @@
               {{ item.product.title}} x {{ item.qty }}
             </div>
            </td>
-           <td>{{ $filters.currency(order.total) }}</td>
+           <td class="text-nowrap">{{ $filters.currency(order.total) }}</td>
            <td class="d-none d-md-table-cell">
              <div class="form-check form-switch">
                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" v-model="order.is_paid">
