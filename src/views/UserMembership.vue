@@ -66,9 +66,6 @@
       <div class="modal modal-sm fade" ref="memberModal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered justify-content-center">
           <div class="modal-content" style="width:200px;">
-            <!-- <div class="modal-header border-bottom-0">
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div> -->
             <div class="modal-body text-center">
               <p class="display-5 text-primary"><i class="bi bi-patch-check"></i></p>
               恭喜成為會員！

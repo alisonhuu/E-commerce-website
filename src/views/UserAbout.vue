@@ -3,9 +3,10 @@
   <BreadcrumbCom></BreadcrumbCom>
   <router-link to="/user/member" class="btn-fixed d-none d-md-block link-dark-h">
     <div class="msg mb-1 text-center">快來加入會員吧！</div>
-    <div class="btn-img" style="backgroundImage: url('/images/about_member.png')"></div>
+    <div class="btn-img" :style="{'backgroundImage': `url(${require('../../public/images/about_member.png')})`}"></div>
   </router-link>
 </div>
+<div class="bg-center mb-6" :style="{height: '35vh', 'backgroundImage': `url(${require('../../public/images/about_bg.jpeg')})`}"></div>
 <div class="container">
   <div>
     <h4 class="text-primary display-6 text-center"><em>植到遇見，生活更美好。</em></h4>

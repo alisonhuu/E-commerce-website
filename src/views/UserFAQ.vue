@@ -94,7 +94,7 @@
         <p class="mb-0">歡迎撥打客服專線哦</p>
         <a class="link-dark-h" href="tel:+886886886">+886 886 886</a>
       </div>
-      <div class="btn-img" style="backgroundImage: url('/images/faq1.png')"></div>
+      <div class="btn-img" :style="{'backgroundImage': `url(${require('../../public/images/faq1.png')})`}"></div>
     </div>
   </div>
 </template>

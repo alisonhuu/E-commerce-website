@@ -196,7 +196,7 @@
     <div>
       <div class="modal" tabindex="-1" ref="mailModal">
         <div class="modal-dialog modal-dialog-centered justify-content-center">
-          <div class="modal-content bg-center border-0" style="width:320px; backgroundImage: url('/images/home_mail.jpg')">
+          <div class="modal-content bg-center border-0" :style="{width: '320px', 'backgroundImage': `url(${require('../../public/images/home_mail.jpg')})`}">
             <div class="modal-header border-bottom-0">
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
