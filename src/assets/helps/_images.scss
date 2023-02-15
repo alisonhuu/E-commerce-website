@@ -1,9 +1,9 @@
-@mixin md{
+@mixin md {
   @media(min-width: 768px){
     @content;
   }
 }
-@mixin lg{
+@mixin lg {
   @media(min-width: 992px){
     @content;
   }
@@ -11,49 +11,108 @@
 .bg-center {
   background-position: center; 
   background-size: cover;
+  background-repeat: no-repeat;
 }
-.home-img{
+.home-img {
   background-image: url(/public/images/home_course.jpg);
   height: 240px;
-  &:hover{
+  &:hover {
     background-image: linear-gradient(transparent, rgba(0,0,0,0.3)),url(/public/images/home_course.jpg);
   }
-  @include md{
+  @include md {
     height: 340px;
   }
-  @include lg{
+  @include lg {
     height: 400px;
   }
 }
-.product-img{
-  height: 200px;
+.new-img {
+  width: 60%;
+  // padding: 5px;
+  overflow: hidden;
+  img{
+    z-index: 5;
+  }
+  &::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    left: 30%;
+    width: 150px;
+    height: 150%;
+    background-image: linear-gradient($primary, $purple-100);
+    animation: img-animate 5s linear infinite;
+    padding:2rem;
+    z-index: 1;
+  }
+}
+@keyframes img-animate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.new-text {
+  top: 5%;
+  left: 5%;
+  background: rgba(255, 255, 255, 0.5);
+  z-index: 10;
+}
+.product-img {
+  height: 220px;
   transition: all 0.5s;
   transform: scale(0.95);
-  &:hover{
+  &:hover {
     transform: scale(1);
   }
-  @include md{
+  @include md {
     height: 240px;
   }
-  @include lg{
+  @include lg {
     height: 280px;
   }
 }
-.sm-imgs{
+.sm-imgs {
   height: 100px;
-  @include md{
+  @include md {
     height: 150px;
   }
-  @include lg{
+  @include lg {
     height: 180px;
   }
 }
-.lg-img{
-  height: 300px;
-  @include md{
+.lg-img {
+  height: 390px;
+  @include md {
     height: 430px;
   }
-  @include lg{
+  @include lg {
     height: 500px;
+  }
+}
+.about-img {
+  position: relative;
+  &::before {
+    content: '';
+    position: absolute;
+    top: -5%;
+    left: -1%;
+    z-index: 0;
+    width: 30%;
+    height: 25%;
+    background-color: $success;
+  }
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -4%;
+    right: 2%;
+    z-index: 0;
+    width: 60%;
+    height: 8%;
+    background-color: $success;
+    opacity: 60%;
   }
 }

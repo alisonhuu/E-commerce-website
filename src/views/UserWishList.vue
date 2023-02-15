@@ -6,7 +6,7 @@
       <h4 class="">我的最愛</h4>
       <h4 class="font-mirza mb-4">Wish List</h4>
     </div>
-    <p class="mb-4 fs-5" v-else>目前我的最愛是空的，請選擇商品加入。</p>
+    <p class="mb-5 fs-5" v-else>目前我的最愛是空的，請選擇商品加入。</p>
     <div class="row row-cols-2 row-cols-md-4 gx-3 gy-5 h-100">
       <div class="col h-100" v-for="item in product" :key="item.id">
         <a href="javascript:;" @click.prevent="getProduct(item.id)">

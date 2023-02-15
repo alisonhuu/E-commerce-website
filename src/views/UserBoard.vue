@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-md">
+  <nav class="navbar navbar-expand-md pb-0">
     <div class="container-fluid flex-wrap">
       <button type="button" class="navbar-toggler link-dark-h" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
       aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -94,6 +94,9 @@
       </div>
     </div>
     <p class="text-center mb-0 pt-3">Copyright © 2023 植到花藝 All rights reserved</p>
+    <p class="text-center text-secondary">僅個人作品使用，無任何商業用途 |
+      <router-link to="/dashboard/index" class="text-decoration-none link-secondary">後台管理</router-link>
+    </p>
   </footer>
   <ToastMessage></ToastMessage>
 </template>

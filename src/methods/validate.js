@@ -13,6 +13,16 @@ defineRule('confirmed', (value, [target]) => {
   }
   return '密碼不符，請再次確認'
 })
+defineRule('engNum', (value) => {
+  // Field is empty, should pass
+  if (!value || !value.length) {
+    return true
+  }
+  if (!/^(?=.*[a-zA-Z])(?=.*[0-9]).{8,}$/.test(value)) {
+    return '密碼須由英數組成，且不能小於 8 個字元'
+  }
+  return true
+})
 
 configure({
   generateMessage: localize({ zh_TW: zhTW }),

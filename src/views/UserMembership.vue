@@ -16,7 +16,7 @@
           <Field name="password" type="password" class="form-control"
           label="密碼" id="userPassword" v-model="form.user.password"
           :class="{ 'is-invalid': errors['password'] }"
-          placeholder="請輸入密碼" rules="required|min:8" autocomplete="off"></Field>
+          placeholder="請輸入密碼" rules="required|engNum" autocomplete="off"></Field>
           <ErrorMessage name="password" class="invalid-feedback"></ErrorMessage>
         </div>
         <div class="mb-3">
@@ -63,17 +63,18 @@
           成為會員</button>
         </div>
       </Form>
-      <div class="modal modal-sm fade " ref="memberModal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header ">
+      <div class="modal modal-sm fade" ref="memberModal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered justify-content-center">
+          <div class="modal-content" style="width:200px;">
+            <!-- <div class="modal-header border-bottom-0">
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
+            </div> -->
+            <div class="modal-body text-center">
+              <p class="display-5 text-primary"><i class="bi bi-patch-check"></i></p>
               恭喜成為會員！
             </div>
             <div class="modal-footer ">
-              <button type="button" class="btn btn-sm btn-outline-primary rounded-4 px-2" @click.prevent="goHome">確定</button>
+              <button type="button" class="btn btn-sm btn-outline-primary rounded-4 px-2" @click.prevent="goHome">確認</button>
             </div>
           </div>
         </div>
@@ -106,6 +107,7 @@ export default {
   },
   mounted () {
     this.modal = new Modal(this.$refs.memberModal)
+    this.modal.show()
   },
   methods: {
     becomeMember () {

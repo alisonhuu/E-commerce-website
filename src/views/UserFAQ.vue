@@ -2,7 +2,7 @@
   <div class="container">
     <BreadcrumbCom></BreadcrumbCom>
     <div class="row justify-content-center">
-      <div class="col-11 col-md-8 mb-4">
+      <div class="col-10 mb-4">
         <span class="h5">商品</span>
         <span class="h5 font-mirza ms-2">Product</span>
       </div>
@@ -44,7 +44,7 @@
           </div>
         </div>
       </div>
-      <div class="col-10 mb-4 mt-5">
+      <div class="col-10 mb-4 mt-6">
         <span class="h5">訂購</span>
         <span class="h5 font-mirza ms-2">Shop</span>
       </div>
@@ -87,6 +87,14 @@
           </div>
         </div>
       </div>
+    </div>
+    <div class="d-none d-md-block mt-6 mx-auto" style="width:180px">
+      <div class="msg mb-1 text-center">
+        <p class="mb-0">任何問題</p>
+        <p class="mb-0">歡迎撥打客服專線哦</p>
+        <a class="link-dark-h" href="tel:+886886886">+886 886 886</a>
+      </div>
+      <div class="btn-img" style="backgroundImage: url('/images/faq1.png')"></div>
     </div>
   </div>
 </template>
