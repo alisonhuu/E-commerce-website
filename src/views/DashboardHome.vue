@@ -53,7 +53,7 @@
               {{ item.product.title}} x {{item.qty }}
              </small>
             </td>
-           <td>{{ $filters.currency(order.total) }}</td>
+           <td class="text-nowrap">{{ $filters.currency(order.total) }}</td>
          </tr>
        </tbody>
      </table>

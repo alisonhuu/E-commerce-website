@@ -196,7 +196,7 @@
     <div>
       <div class="modal" tabindex="-1" ref="mailModal">
         <div class="modal-dialog modal-dialog-centered justify-content-center">
-          <div class="modal-content bg-center border-0" :style="{width: '320px', 'backgroundImage': `url(${require('../../public/images/home_mail.jpg')})`}">
+          <div class="modal-content bg-center border-0" :style="{maxWidth: '320px', 'backgroundImage': `url(${require('../../public/images/home_mail.jpg')})`}">
             <div class="modal-header border-bottom-0">
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -301,12 +301,12 @@ export default {
     },
     imgSlide () {
       const img = this.$refs.sliderImg
-      const slideInAt = window.scrollY + window.innerHeight - img.clientHeight / 2 // 滾動到圖片三分之一時滑入
+      const slideInAt = window.scrollY + window.innerHeight - img.clientHeight / 3 // 滾動到圖片三分之一時滑入
       const imageBottom = img.offsetTop + img.clientHeight
       const isShown = slideInAt > img.offsetTop
       const isNotScrolledPast = window.scrollY < imageBottom
-      console.log('isShown', isShown, 'slideInAt', slideInAt, 'window.scrollY', window.scrollY, 'window.innerHeight', window.innerHeight, 'img.offsetTop', img.offsetTop)
-      console.log('isNotScrolledPast', isNotScrolledPast, 'imageBottom', imageBottom, 'img.clientHeight', img.clientHeight)
+      // console.log('isShown', isShown, 'slideInAt', slideInAt, 'window.scrollY', window.scrollY, 'window.innerHeight', window.innerHeight, 'img.offsetTop', img.offsetTop)
+      // console.log('isNotScrolledPast', isNotScrolledPast, 'imageBottom', imageBottom, 'img.clientHeight', img.clientHeight)
       if (isShown && isNotScrolledPast) {
         this.$refs.sliderImg.classList.add('active')
         this.$refs.sliderArticle.classList.add('active')
