@@ -44,9 +44,9 @@
       </router-link>
     <div class="mt-4">
       <h4>掌握</h4>
-      <p>毅力不搖的仙人掌和充滿活力的多肉植物<br>
-        選用具有歷史痕跡的盆器<br>
-        刻有藝術氣息的圖騰<br>
+      <p>屹立不搖的仙人掌與充滿活力的多肉植物<br>
+        特別選用具有歷史痕跡的盆器<br>
+        搭配刻有藝術氣息的圖騰<br>
         適合慧眼獨具的收藏家
       </p>
     </div>
@@ -61,7 +61,7 @@
       <div class="col-7 col-md-4 slide-in align-right" ref="sliderArticle">
         <h4 class="text-primary fw-bold text-center">新會員招集中</h4>
         <h4 class="font-mirza text-primary text-center">Membership</h4>
-        <p class="mt-3">您跟我們一樣喜愛花草，並希望享有更多優惠嗎？</p>
+        <p class="mt-2">您跟我們一樣喜愛花草，並希望享有更多優惠嗎？</p>
         <p>第一筆訂單享 85 折，每年獨享壽星優惠，不定期收到最新的行銷活動...等等好康，不能錯過。</p>
         <div class="text-center">
           <router-link to="/user/member" class="btn btn-outline-primary rounded-4 px-4">加入會員</router-link>
@@ -208,7 +208,7 @@
               <p v-if="wrongMsg" class="text-danger">{{ wrongMsg }}</p>
             </div>
             <div class="modal-footer border-top-0">
-              <button type="button" class="btn btn-sm btn-light rounded-4 px-2" @click="sentEmail">送出</button>
+              <button type="button" class="btn btn-light rounded-4 px-2" @click="sentEmail">送出</button>
             </div>
           </div>
         </div>
@@ -300,11 +300,13 @@ export default {
       }
     },
     imgSlide () {
-      const slideInAt = window.scrollY + window.innerHeight - 30
-      const imageBottom = this.$refs.sliderImg.offsetTop
-      const isShown = slideInAt > this.$refs.sliderImg.offsetTop + 30
+      const img = this.$refs.sliderImg
+      const slideInAt = window.scrollY + window.innerHeight - img.clientHeight / 2 // 滾動到圖片三分之一時滑入
+      const imageBottom = img.offsetTop + img.clientHeight
+      const isShown = slideInAt > img.offsetTop
       const isNotScrolledPast = window.scrollY < imageBottom
-      // console.log(window.scrollY, window.innerHeight, slideInAt, imageBottom)
+      console.log('isShown', isShown, 'slideInAt', slideInAt, 'window.scrollY', window.scrollY, 'window.innerHeight', window.innerHeight, 'img.offsetTop', img.offsetTop)
+      console.log('isNotScrolledPast', isNotScrolledPast, 'imageBottom', imageBottom, 'img.clientHeight', img.clientHeight)
       if (isShown && isNotScrolledPast) {
         this.$refs.sliderImg.classList.add('active')
         this.$refs.sliderArticle.classList.add('active')

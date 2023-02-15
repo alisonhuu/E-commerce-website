@@ -1,36 +1,31 @@
 <template>
 <LoadingCom :active="isLoading"></LoadingCom>
 <div class="container">
-  <section class="my-4">
-    <div  v-if="id.length > 0">
-      <h4 class="">我的最愛</h4>
-      <h4 class="font-mirza mb-4">Wish List</h4>
-    </div>
-    <p class="mb-5 fs-5" v-else>目前我的最愛是空的，請選擇商品加入。</p>
-    <div class="row row-cols-2 row-cols-md-4 gx-3 gy-5 h-100">
-      <div class="col h-100" v-for="item in product" :key="item.id">
-        <a href="javascript:;" @click.prevent="getProduct(item.id)">
-          <div :style="{ backgroundImage: `url(${item.imageUrl})`}"
-          class="product-img bg-center rounded mb-3 position-relative">
-            <div class="position-absolute bottom-0 end-0 p-1">
-              <button class="btn btn-sm btn-light rounded-4"
-                @click.stop="removeWishList(item.id)">
-                <i class="bi bi-trash3"></i>
-              </button>
-              <button class="btn btn-sm btn-light rounded-4 ms-1"
-                @click.stop="addToCart(item)">
-                <i class="bi bi-cart"></i>
-              </button>
+  <section class="my-4" v-if="id.length > 0">
+      <div class="row row-cols-2 row-cols-md-4 gx-3 gy-5 h-100">
+        <div class="col h-100" v-for="item in product" :key="item.id">
+          <a href="javascript:;" @click.prevent="getProduct(item.id)">
+            <div :style="{ backgroundImage: `url(${item.imageUrl})`}"
+            class="product-img bg-center rounded mb-3 position-relative">
+              <div class="position-absolute bottom-0 end-0 p-1">
+                <button class="btn btn-sm btn-light rounded-4"
+                  @click.stop="removeWishList(item.id)">
+                  <i class="bi bi-trash3"></i>
+                </button>
+                <button class="btn btn-sm btn-light rounded-4 ms-1"
+                  @click.stop="addToCart(item)">
+                  <i class="bi bi-cart"></i>
+                </button>
+              </div>
             </div>
-          </div>
-        </a>
-        <a href="javascript:;" @click.prevent="getProduct(item.id)"
-        class="h6 link-dark-h">{{ item.title }}</a>
-        <p class="card-text fw-bold text-secondary mt-2 mb-0">{{ $filters.currency(item.price) }}</p>
+          </a>
+          <a href="javascript:;" @click.prevent="getProduct(item.id)"
+          class="h6 link-dark-h">{{ item.title }}</a>
+          <p class="card-text fw-bold text-secondary mt-2 mb-0">{{ $filters.currency(item.price) }}</p>
+        </div>
       </div>
-    </div>
   </section>
-
+  <p class="mb-5 fs-5" v-else>目前我的最愛是空的，請選擇商品加入。</p>
 </div>
 </template>
 

@@ -88,7 +88,7 @@
         </div>
       </div>
     </div>
-    <div class="d-none d-md-block mt-6 mx-auto" style="width:180px">
+    <div class="mt-6 mx-auto" style="width:180px">
       <div class="msg mb-1 text-center">
         <p class="mb-0">任何問題</p>
         <p class="mb-0">歡迎撥打客服專線哦</p>

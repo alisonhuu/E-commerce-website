@@ -71,7 +71,7 @@
               恭喜成為會員！
             </div>
             <div class="modal-footer ">
-              <button type="button" class="btn btn-sm btn-outline-primary rounded-4 px-2" @click.prevent="goHome">確認</button>
+              <button type="button" class="btn btn-outline-primary rounded-4 px-2" @click.prevent="goHome">確認</button>
             </div>
           </div>
         </div>
@@ -104,11 +104,9 @@ export default {
   },
   mounted () {
     this.modal = new Modal(this.$refs.memberModal)
-    this.modal.show()
   },
   methods: {
     becomeMember () {
-      this.form = {}
       this.modal.show()
     },
     goHome () {
