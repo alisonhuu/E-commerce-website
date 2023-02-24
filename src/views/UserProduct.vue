@@ -19,23 +19,22 @@
           <h4 class="mb-4 mt-4 mt-md-0">{{ product.title }}</h4>
           <h5 class="d-inline me-2 text-secondary">售價： {{ $filters.currency(product.price) }}</h5>
           <span><small>（原價： {{ $filters.currency(product.origin_price) }}）</small></span>
-          <p class="mt-4">{{ product.description }}</p>
+          <p class="mt-4 fw-bold" style="whiteSpace: pre-wrap">{{ product.content }}</p>
+          <p class="mt-2" style="whiteSpace: pre-wrap">{{ product.description }}</p>
           <div class="mt-3" v-if="product.category === 'flowers'">
             <hr>
-            <p class="mb-0">乾燥花是鮮花經由風乾處理而製成，永生花是鮮花浸泡在脫色藥水中，再染色後製成。</p>
-            <p class="mb-0">花材採用當季花材，若市場短缺，將更換等價花材。</p>
-            <p>適用於生日禮物、畢業典禮、婚禮、情人節等慶祝場合，也可居家佈置。</p>
+            <p class="mb-0">乾燥花是鮮花經由風乾處理製成，永生花是鮮花浸泡在脫色藥水中，再染色後製成，適用於生日禮物、畢業典禮、婚禮、情人節等慶祝場合，也可居家佈置。</p>
+            <p>花材採用當季花材，若市場短缺，將更換等價花材。</p>
             <p>配送方式｜宅配 / 自取 </p>
             <p>保存期限｜約為1-2年，良好保存下可達數年</p>
-            <p>注意事項｜請置於陰涼乾燥的通風處，勿陽光直射</p>
+            <p>注意事項｜請置於陰涼乾燥的通風處，避免陽光直射</p>
           </div>
           <div class="mt-3" v-if="product.category === 'plants'">
             <hr>
-            <p class="mb-0">植物有助於室內空氣之淨化，綠色可放鬆緊繃的雙眼，讓環境更美觀。</p>
-            <p class="mb-0">適用於生日禮物、開幕送禮、辦公或居家佈置。</p>
-            <p >每株植物生長不同，照片僅供參考，實品會有些微誤差。</p>
+            <p class="mb-0">植物有助於室內空氣之淨化，綠色可放鬆緊繃的雙眼，讓環境更美觀，適用於生日禮物、開幕送禮、辦公或居家佈置。</p>
+            <p>實品依每株植物當下生長狀態為主，照片僅供參考。</p>
             <p>配送方式｜宅配 / 自取 </p>
-            <p>注意事項｜室內植物對陽光需求不太高，請避免陽光直射</p>
+            <p>注意事項｜室內植物對陽光需求不高，避免陽光直射</p>
           </div>
           <div class="row mt-4">
             <label for="qty" class="col-8 col-form-label text-end">數量</label>
@@ -110,3 +109,4 @@ export default {
   inject: ['emitter', 'PushMessageState']
 }
 </script>
+<!-- ✓ 獨家設計 ✓ 送禮首選 -->
