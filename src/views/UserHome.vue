@@ -305,8 +305,6 @@ export default {
       const imageBottom = img.offsetTop + img.clientHeight
       const isShown = slideInAt > img.offsetTop
       const isNotScrolledPast = window.scrollY < imageBottom
-      // console.log('isShown', isShown, 'slideInAt', slideInAt, 'window.scrollY', window.scrollY, 'window.innerHeight', window.innerHeight, 'img.offsetTop', img.offsetTop)
-      // console.log('isNotScrolledPast', isNotScrolledPast, 'imageBottom', imageBottom, 'img.clientHeight', img.clientHeight)
       if (isShown && isNotScrolledPast) {
         this.$refs.sliderImg.classList.add('active')
         this.$refs.sliderArticle.classList.add('active')
