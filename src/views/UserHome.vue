@@ -286,17 +286,16 @@ export default {
       this.$router.push(`/user/product/${id}`)
     },
     debounce (func, wait = 20, immediate = true) {
-      let timeout
-      return function () {
-        const context = this; const args = arguments
-        const later = function () {
-          timeout = null
-          if (!immediate) func.apply(context, args)
+      let timeout = null
+      return function (...args) {
+        const context = this
+        if (timeout) {
+          clearTimeout(timeout)
         }
-        const callNow = immediate && !timeout
-        clearTimeout(timeout)
-        timeout = setTimeout(later, wait)
-        if (callNow) func.apply(context, args)
+        if (immediate && !timeout) {
+          func.apply(context, args)
+        }
+        timeout = setTimeout(() => func.apply(context, args), wait)
       }
     },
     imgSlide () {

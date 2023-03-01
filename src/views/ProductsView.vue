@@ -2,7 +2,7 @@
   <LoadingCom :active="isLoading"></LoadingCom>
   <div class="d-flex justify-content-between align-items-center">
     <h5>商品</h5>
-    <div class="d-flex">
+    <div class="d-flex align-items-center">
       <form class="me-3">
         <div class="input-group">
           <input class="form-control form-control-sm" type="search" placeholder="請輸入商品名稱"

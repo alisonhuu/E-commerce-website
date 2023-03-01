@@ -1,10 +1,10 @@
 <template>
   <LoadingCom :active="isLoading"></LoadingCom>
-  <div class="row justify-content-between align-items-center">
-    <h5 class="col-3">優惠券</h5>
-    <div class="col d-flex align-items-center">
+  <div class="d-flex justify-content-between align-items-center">
+    <h5 class="text-nowrap me-2">優惠券</h5>
+    <div class="d-flex align-items-center">
       <form class="me-3">
-        <div class="input-group ">
+        <div class="input-group">
           <input class="form-control form-control-sm" type="search" placeholder="請輸入優惠券名稱"
           :value="searchInput" @change="searchInput = $event.target.value" aria-label="Search">
           <button class="btn btn-secondary input-group-text" type="submit"><i class="bi bi-search"></i></button>
