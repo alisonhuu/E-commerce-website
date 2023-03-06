@@ -44,8 +44,8 @@
            </td>
            <td>
              <div class="btn-group btn-group-sm">
-               <button class="btn btn-outline-primary p-1 p-md-2" @click.prevent="openModal(order)">編輯</button>
-               <button class="btn btn-outline-danger p-1 p-md-2" @click.prevent="delOrdersModal(order)">刪除</button>
+               <button class="btn btn-outline-primary p-1 p-md-2" type="button" @click="openModal(order)">編輯</button>
+               <button class="btn btn-outline-danger p-1 p-md-2" type="button" @click="delOrdersModal(order)">刪除</button>
              </div>
            </td>
          </tr>

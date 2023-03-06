@@ -9,10 +9,10 @@
 </template>
 
 <script>
-import NavbarCom from '../components/NavCom.vue'
+import NavbarCom from '@/components/NavCom.vue'
 import emitter from '@/methods/emitter'
 import ToastMessage from '@/components/ToastMessage.vue'
-import PushMessageState from '../components/PushMessageState.vue'
+import PushMessageState from '@/components/PushMessageState.vue'
 
 export default {
   created () {

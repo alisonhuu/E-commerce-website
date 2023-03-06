@@ -8,11 +8,11 @@
             <div :style="{ backgroundImage: `url(${item.imageUrl})`}"
             class="product-img bg-center rounded mb-3 position-relative">
               <div class="position-absolute bottom-0 end-0 p-1">
-                <button class="btn btn-sm btn-light rounded-4"
+                <button class="btn btn-sm btn-light rounded-4" type="button"
                   @click.stop="addToWishList(item)">
                   <i class="bi" :class="heart(item)"></i>
                 </button>
-                <button class="btn btn-sm btn-light rounded-4 ms-1"
+                <button class="btn btn-sm btn-light rounded-4 ms-1" type="button"
                   @click.stop="addToCart(item)" :disabled="loadingItem === item.id">
                   <i class="bi bi-cart"></i>
                 </button>

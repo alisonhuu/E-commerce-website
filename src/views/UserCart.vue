@@ -54,13 +54,13 @@
         <div class="input-group input-group-sm pb-3 px-2 p-mb-0">
           <input type="text" class="form-control" placeholder="請輸入優惠碼" v-model.lazy="code" @keyup.enter="useCoupon">
           <div class="input-group-text">
-            <button class="btn btn-sm btn-outline-secondary" type="button" @click.prevent="useCoupon">
+            <button class="btn btn-sm btn-outline-secondary" type="button" @click="useCoupon">
               套用優惠碼
             </button>
           </div>
         </div>
         <div class="text-end mt-5">
-          <button class="btn-shadow btn btn-primary text-light" @click.prevent="goCheckout">前往結帳</button>
+          <button class="btn-shadow btn btn-primary text-light" type="button" @click.="goCheckout">前往結帳</button>
         </div>
       </div>
     </div>

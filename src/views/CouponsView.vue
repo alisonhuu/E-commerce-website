@@ -11,7 +11,7 @@
         </div>
       </form>
       <div class="text-end">
-        <button class="btn btn-primary text-white text-nowrap" @click.prevent="openModal(true)">新增優惠券</button>
+        <button class="btn btn-primary text-white text-nowrap" type="button" @click="openModal(true)">新增優惠券</button>
       </div>
     </div>
   </div>
@@ -42,8 +42,8 @@
           </td>
           <td>
               <div class="btn-group btn-group-sm">
-                  <button class="btn btn-outline-primary p-1 p-md-2" @click.prevent="openModal(false, item)">編輯</button>
-                  <button class="btn btn-outline-danger p-1 p-md-2" @click.prevent="delModal(item)">刪除</button>
+                  <button class="btn btn-outline-primary p-1 p-md-2" type="button" @click="openModal(false, item)">編輯</button>
+                  <button class="btn btn-outline-danger p-1 p-md-2" type="button" @click="delModal(item)">刪除</button>
               </div>
           </td>
         </tr>
